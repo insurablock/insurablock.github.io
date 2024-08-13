@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsuraBlock Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .header img {
+            height: 50px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            flex: 1;
+            text-align: center;
+        }
+
+        .header .info {
+            font-size: 0.9em;
+            text-align: right;
+        }
+
+        .header .info a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-right: 1px solid #ddd;
+            position: sticky;
+            top: 20px;
+            height: 100vh;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #0056b3;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #003a8c;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .paper-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .author-list {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .author-list span {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .author-affiliations {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .publication-details {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: #fff;
+            background: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metrics div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .metrics div i {
+            color: #007BFF;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .system-architecture img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="InsuraBlock Network Logo">
+        <h1>InsuraBlock Network</h1>
+        <div class="info">
+            <p>Open access | Published: 14 Aug 2024 | <a href="#">Cite this project</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="#abstract">Abstract</a>
+            <a href="#introduction">Introduction</a>
+            <a href="#methodology">Methodology</a>
+            <a href="#results">Results</a>
+            <a href="#software-implementation">Software Implementation</a>
+            <a href="#discussion">Discussion</a>
+            <a href="#conclusion">Conclusion</a>
+            <a href="#references">References</a>
+        </div>
+        <div class="main-content">
+            <div class="download-section">
+                <a href="path_to_your_research_paper.pdf" class="download-btn" download>Open Project <i class="fas fa-download"></i></a>
+                <p>You have full access to this <a href="#" style="color: #007BFF; text-decoration: underline;">open access</a> project</p>
+            </div>
+
+            <div class="paper-title">
+                InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System
+            </div>
+
+            <div class="author-list">
+                <span>by Zain Buksh<sup>1</sup> and A B M Shawkat Ali</span>
+            </div>
+
+            <div class="author-affiliations">
+                <p><sup>1</sup> The University of Fiji, Department of Computer Science and Mathematics, Fiji</p>
+                <p>Email: <a href="mailto:zainb@unifiji.ac.fj">zainb@unifiji.ac.fj</a></p>
+            </div>
+
+            <div class="publication-details">
+                Project received: 8 April 2024 / Published: 13 August 2024
+            </div>
+
+            <h2 id="abstract">Abstract</h2>
+            <p>The healthcare industry faces numerous challenges in managing health insurance claims, including inefficiencies, fraud, and data security issues. "InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System" addresses these challenges by leveraging blockchain technology to create a secure, transparent, and tamper-proof platform for recording health insurance claims. This system ensures data integrity, reduces administrative overhead, and enhances trust among stakeholders. By implementing smart contracts, InsuraBlock automates claim verification and settlement processes, thereby reducing processing time and operational costs. The proposed solution demonstrates significant potential in transforming the health insurance sector, promoting efficiency, and safeguarding sensitive patient data.</p>
+
+            <h2 id="introduction">Introduction</h2>
+            <p>The health insurance industry is confronted with significant challenges related to the management of claims, including inefficiencies, fraud, and data security concerns. Traditional systems often rely on centralized databases that are vulnerable to tampering and unauthorized access, leading to increased administrative costs and reduced trust among stakeholders. This whitepaper introduces InsuraBlock, a blockchain-based health insurance claim data recording system designed to address these challenges through the use of decentralized ledger technology and smart contracts.</p>
+
+            <h2 id="methodology">Methodology</h2>
+            <h3>Blockchain Technology</h3>
+            <p>Blockchain technology provides a decentralized, immutable ledger that records transactions in a secure and transparent manner. Each block in the blockchain contains a cryptographic hash of the previous block, a timestamp, and transaction data, ensuring data integrity and security. The distributed nature of the blockchain ensures that no single entity controls the entire ledger, reducing the risk of fraud and tampering [1][2].</p>
+
+            <h3>Smart Contracts</h3>
+            <p>Smart contracts are self-executing contracts with the terms of the agreement directly written into code. These contracts automatically execute predefined actions when certain conditions are met, eliminating the need for intermediaries and reducing the risk of human error [3][4]. In the context of InsuraBlock, smart contracts automate the verification and settlement of insurance claims.</p>
+
+            <h3 id="system-architecture">System Architecture</h3>
+            <p>InsuraBlock comprises three main components:</p>
+            <ul>
+                <li><strong>Blockchain Ledger:</strong> A decentralized ledger that records all health insurance claims.</li>
+                <li><strong>Smart Contracts:</strong> Automated scripts that manage the claim verification and settlement process.</li>
+                <li><strong>User Interface:</strong> A web-based interface for stakeholders to interact with the system.</li>
+            </ul>
+            <div class="system-architecture">
+                <img src="architecture.png" alt="System Architecture">
+            </div>
+
+            <h3>Data Flow</h3>
+            <p>Claim Submission: Patients or healthcare providers submit insurance claims via the user interface.<br>
+            Verification: Smart contracts automatically verify the claims against predefined criteria.<br>
+            Approval and Settlement: Verified claims are approved and recorded on the blockchain, triggering automatic payment settlements.</p>
+
+            <h2 id="results">Results</h2>
+            <h3>Data Integrity and Security</h3>
+            <p>The implementation of blockchain technology ensures that once a claim is recorded, it cannot be altered or deleted, providing a secure and trustworthy record. This significantly reduces the risk of fraud and unauthorized access to sensitive patient data [5][6].</p>
+
+            <h3>Efficiency and Cost Reduction</h3>
+            <p>By automating claim verification and settlement processes through smart contracts, InsuraBlock reduces administrative overhead and processing time, resulting in substantial cost savings for insurance companies [7][8].</p>
+
+            <h3>Transparency and Trust</h3>
+            <p>The decentralized nature of blockchain provides transparency in the claim process, allowing all stakeholders to access and verify claim records. This transparency fosters trust among patients, healthcare providers, and insurance companies [9][10].</p>
+
+            <h2 id="software-implementation">Software Implementation</h2>
+            <p>InsuraBlock's software component is designed to facilitate seamless interaction between users and the blockchain system. The system's user interface, developed using HTML, CSS, and JavaScript, provides an intuitive platform for recording, managing, and analyzing health insurance claims.</p>
+
+            <h3>User Interface Features</h3>
+            <p>Record Registration: Users can register new insurance claims by entering relevant information such as full name, BRN, policy number, treatment received, diagnosed disease, clinic diagnosed, and claim amount. Each record is then hashed using SHA-256 to ensure data integrity before being stored on the blockchain.<br>
+            Registration List: Displays all recorded claims, providing a comprehensive view of the registered data, including full name, BRN, policy number, treatment received, diagnosed disease, clinic diagnosed, claim amount, timestamp, and hash.<br>
+            Search Functionality: Allows users to search for specific claims using the BRN number, facilitating easy retrieval and verification of claim data.<br>
+            Analytics: Provides detailed analysis of claim data, including total claim amounts, disease frequency, and predictive analysis using machine learning algorithms such as linear regression, support vector machines, and decision trees.</p>
+
+            <h3>Analytical Tools</h3>
+            <p>The analytics section of InsuraBlock incorporates advanced visualization tools to present data in an easily interpretable format. These tools include:</p>
+            <ul>
+                <li>Bar Charts: Used for future claim amount predictions based on historical data.</li>
+                <li>Scatter Plots: Display claim amount frequency, providing insights into common claim amounts.</li>
+                <li>Heatmaps: Visualize the frequency of claims by month and diagnosed disease, highlighting trends and patterns in the data.</li>
+                <li>Pie Charts: Show the distribution of diagnosed diseases, offering a clear picture of common ailments among policyholders.</li>
+            </ul>
+
+            <h3>Blockchain Integration</h3>
+            <p>InsuraBlock integrates with blockchain technology to ensure that all registered records are securely stored and immutable. The system uses a local storage mechanism to temporarily store records before pushing them to the blockchain, ensuring that all data is tamper-proof and verifiable.</p>
+            <ul>
+                <li>Record Hashing: Each record is hashed using the SHA-256 algorithm to create a unique identifier that ensures data integrity.</li>
+                <li>Data Storage: Records are stored locally until they are pushed to the blockchain, where they become part of the immutable ledger.</li>
+                <li>Verification: The blockchain's decentralized nature allows for transparent verification of all records, enhancing trust among stakeholders.</li>
+            </ul>
+
+            <h2 id="discussion">Discussion</h2>
+            <p>The implementation of InsuraBlock in the health insurance industry presents several advantages and challenges. While the system enhances data integrity, efficiency, and transparency, it also requires significant investment in technology and training. Moreover, regulatory compliance and interoperability with existing systems are critical factors that need to be addressed for widespread adoption [11][12].</p>
+
+            <h3>Potential for Industry Transformation</h3>
+            <p>InsuraBlock has the potential to transform the health insurance sector by streamlining the claim process, reducing fraud, and enhancing data security. The use of blockchain technology and smart contracts can lead to more efficient and cost-effective operations, ultimately benefiting patients, healthcare providers, and insurance companies [13][14].</p>
+
+            <h3>Challenges and Future Research</h3>
+            <p>Despite its potential, the implementation of blockchain technology in health insurance is not without challenges. Issues such as scalability, interoperability, and regulatory compliance need to be addressed. Future research should focus on developing standardized protocols and frameworks to facilitate the integration of blockchain technology in the health insurance industry [15][16].</p>
+
+            <h2 id="conclusion">Conclusion</h2>
+            <p>InsuraBlock presents a transformative solution for the health insurance industry, addressing critical challenges related to inefficiencies, fraud, and data security. By leveraging blockchain technology and smart contracts, InsuraBlock enhances data integrity, reduces operational costs, and promotes transparency. This system has the potential to revolutionize the management of health insurance claims, ensuring a more efficient and secure healthcare ecosystem.</p>
+
+            <h2 id="references">References</h2>
+            <p>
+                [1] Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.<br>
+                [2] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An overview of blockchain technology: Architecture, consensus, and future trends. 2017 IEEE International Congress on Big Data (BigData Congress).<br>
+                [3] Wood, G. (2014). Ethereum: A Secure Decentralized Generalized Transaction Ledger.<br>
+                [4] Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the Internet of Things. IEEE Access.<br>
+                [5] Azaria, A., Ekblaw, A., Vieira, T., & Lippman, A. (2016). MedRec: Using Blockchain for Medical Data Access and Permission Management. 2016 2nd International Conference on Open and Big Data (OBD).<br>
+                [6] Yue, X., Wang, H., Jin, D., Li, M., & Jiang, W. (2016). Healthcare data gateways: Found healthcare intelligence on blockchain with novel privacy risk control. Journal of Medical Systems.<br>
+                [7] Kumar, S., Smith, K., & Banerjee, A. (2020). Blockchain technology in healthcare: A systematic review. Healthcare Management Review.<br>
+                [8] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2019). Blockchain challenges and opportunities: A survey. International Journal of Web and Grid Services.<br>
+                [9] Engelhardt, M. A. (2017). Hitching healthcare to the blockchain: A promising path to a value-based model. Healthcare Informatics Research.<br>
+                [10] Kshetri, N. (2017). Blockchain's roles in strengthening cybersecurity and protecting privacy. Telecommunications Policy.<br>
+                [11] Peterson, K., Deeduvanu, R., Kanjamala, P., & Boles, K. (2016). A blockchain-based approach to health information exchange networks. Proceedings of NIST Workshop on Blockchain and Healthcare.<br>
+                [12] Radanović, I., & Likić, R. (2018). Opportunities for use of blockchain technology in medicine. Applied Health Economics and Health Policy.<br>
+                [13] Cai, C. (2018). Disrupting financial intermediation: An assessment of the blockchain technology's impact. Information & Communications Technology Law.<br>
+                [14] Zhang, P., Schmidt, D. C., White, J., & Lenz, G. (2018). Blockchain technology use cases in healthcare. Advances in Computers.<br>
+                [15] Angraal, S., Krumholz, H. M., & Schulz, W. L. (2017). Blockchain technology: Applications in health care. Circulation: Cardiovascular Quality and Outcomes.<br>
+                [16] Bocek, T., Rodrigues, B. B., Strasser, T., & Stiller, B. (2017). Blockchains everywhere - A use-case of blockchains in the pharma supply-chain. 2017 IFIP/IEEE Symposium on Integrated Network and Service Management (IM).<br>
+                [17] Xu, X., Weber, I., & Staples, M. (2019). Architecture for blockchain applications. Springer.<br>
+                [18] Wang, H., & He, D. (2018). A survey on security of blockchain systems. Future Generation Computer Systems.<br>
+                [19] Liang, X., Zhao, J., Shetty, S., & Li, D. (2017). Integrating blockchain for data sharing and collaboration in mobile healthcare applications. 2017 IEEE 28th Annual International Symposium on Personal, Indoor, and Mobile Radio Communications (PIMRC).<br>
+                [20] Esposito, C., De Santis, A., Tortora, G., Chang, H., & Choo, K. K. R. (2018). Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? IEEE Cloud Computing.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 InsuraBlock Network. All rights reserved.
+    </div>
+
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
