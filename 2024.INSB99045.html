@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            color: #333;
         }
 
         .header {
-            background-color: #0056b3;
+            background: linear-gradient(to right, #0056b3, #007bff);
             color: #fff;
             padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .header img {
@@ -29,28 +31,34 @@
 
         .header h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 1.5em;
             flex: 1;
             text-align: center;
+            font-weight: 700;
         }
 
         .header .info {
             font-size: 0.9em;
             text-align: right;
+            flex-basis: 100%;
+            margin-top: 10px;
         }
 
         .header .info a {
             color: #fff;
             text-decoration: underline;
+            cursor: pointer;
         }
 
         .container {
             display: flex;
+            flex-wrap: wrap;
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
             background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar {
@@ -61,6 +69,7 @@
             position: sticky;
             top: 20px;
             height: 100vh;
+            border-radius: 8px 0 0 8px;
         }
 
         .sidebar a {
@@ -81,16 +90,21 @@
             flex: 1;
             padding: 20px;
             animation: fadeIn 1s ease-in-out;
+            border-radius: 0 8px 8px 0;
         }
 
         h2 {
             color: #0056b3;
             margin-bottom: 10px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
         }
 
         p {
             line-height: 1.6;
             margin-bottom: 20px;
+            font-size: 1.1em;
         }
 
         .paper-title {
@@ -130,15 +144,20 @@
             padding: 10px 20px;
             font-size: 1.2em;
             color: #fff;
-            background: #007BFF;
+            background: linear-gradient(to right, #007BFF, #0056b3);
             text-decoration: none;
             border-radius: 5px;
             margin-bottom: 10px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .download-btn i {
+            margin-left: 5px;
         }
 
         .download-btn:hover {
-            background: #0056b3;
+            background: linear-gradient(to right, #0056b3, #004080);
+            transform: scale(1.05);
         }
 
         .footer {
@@ -147,6 +166,7 @@
             background: #fff;
             margin-top: 20px;
             box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
         .footer a {
@@ -186,6 +206,95 @@
             height: auto;
             display: block;
             margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.2em;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                position: relative;
+                border-radius: 8px;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 60px; 
+            animation: fadeInModal 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(0); }
+        }
+
+        /* References styling */
+        .references {
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .references p {
+            margin-bottom: 10px;
+        }
+
+        .references p span {
+            display: inline-block;
+            min-width: 30px;
         }
     </style>
 </head>
@@ -194,7 +303,7 @@
         <img src="logo.png" alt="InsuraBlock Network Logo">
         <h1>InsuraBlock Network</h1>
         <div class="info">
-            <p>Published: 13 Aug 2024 | <a href="#">Cite this project</a></p>
+            <p>Published: 13 Aug 2024 | <a id="cite-project">Cite this project</a></p>
         </div>
     </div>
 
@@ -211,8 +320,7 @@
         </div>
         <div class="main-content">
             <div class="download-section">
-                <a href="path_to_your_research_paper.pdf" class="download-btn" download>Open Project <i class="fas fa-download"></i></a>
-                <p>You have full access to this <a href="#" style="color: #007BFF; text-decoration: underline;">open access</a> project</p>
+                <a href="path_to_your_research_paper.pdf" class="download-btn" download>Open Project <i class="fas fa-folder-open"></i></a>
             </div>
 
             <div class="paper-title">
@@ -220,11 +328,11 @@
             </div>
 
             <div class="author-list">
-                <span>by Zain Buksh<sup>1</sup> and A B M Shawkat Ali</span>
+                <span>by <b><i>Zain Buksh</i></b> and <b><i>A B M Shawkat Ali</i></b></span>
             </div>
 
             <div class="author-affiliations">
-                <p><sup>1</sup> The University of Fiji, Department of Computer Science and Mathematics, Fiji</p>
+                <p>The University of Fiji, Department of Computer Science and Mathematics, Fiji</p>
                 <p>Email: <a href="mailto:zainb@unifiji.ac.fj">zainb@unifiji.ac.fj</a></p>
             </div>
 
@@ -310,28 +418,28 @@
             <p>InsuraBlock presents a transformative solution for the health insurance industry, addressing critical challenges related to inefficiencies, fraud, and data security. By leveraging blockchain technology and smart contracts, InsuraBlock enhances data integrity, reduces operational costs, and promotes transparency. This system has the potential to revolutionize the management of health insurance claims, ensuring a more efficient and secure healthcare ecosystem.</p>
 
             <h2 id="references">References</h2>
-            <p>
-                [1] Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.<br>
-                [2] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An overview of blockchain technology: Architecture, consensus, and future trends. 2017 IEEE International Congress on Big Data (BigData Congress).<br>
-                [3] Wood, G. (2014). Ethereum: A Secure Decentralized Generalized Transaction Ledger.<br>
-                [4] Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the Internet of Things. IEEE Access.<br>
-                [5] Azaria, A., Ekblaw, A., Vieira, T., & Lippman, A. (2016). MedRec: Using Blockchain for Medical Data Access and Permission Management. 2016 2nd International Conference on Open and Big Data (OBD).<br>
-                [6] Yue, X., Wang, H., Jin, D., Li, M., & Jiang, W. (2016). Healthcare data gateways: Found healthcare intelligence on blockchain with novel privacy risk control. Journal of Medical Systems.<br>
-                [7] Kumar, S., Smith, K., & Banerjee, A. (2020). Blockchain technology in healthcare: A systematic review. Healthcare Management Review.<br>
-                [8] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2019). Blockchain challenges and opportunities: A survey. International Journal of Web and Grid Services.<br>
-                [9] Engelhardt, M. A. (2017). Hitching healthcare to the blockchain: A promising path to a value-based model. Healthcare Informatics Research.<br>
-                [10] Kshetri, N. (2017). Blockchain's roles in strengthening cybersecurity and protecting privacy. Telecommunications Policy.<br>
-                [11] Peterson, K., Deeduvanu, R., Kanjamala, P., & Boles, K. (2016). A blockchain-based approach to health information exchange networks. Proceedings of NIST Workshop on Blockchain and Healthcare.<br>
-                [12] Radanović, I., & Likić, R. (2018). Opportunities for use of blockchain technology in medicine. Applied Health Economics and Health Policy.<br>
-                [13] Cai, C. (2018). Disrupting financial intermediation: An assessment of the blockchain technology's impact. Information & Communications Technology Law.<br>
-                [14] Zhang, P., Schmidt, D. C., White, J., & Lenz, G. (2018). Blockchain technology use cases in healthcare. Advances in Computers.<br>
-                [15] Angraal, S., Krumholz, H. M., & Schulz, W. L. (2017). Blockchain technology: Applications in health care. Circulation: Cardiovascular Quality and Outcomes.<br>
-                [16] Bocek, T., Rodrigues, B. B., Strasser, T., & Stiller, B. (2017). Blockchains everywhere - A use-case of blockchains in the pharma supply-chain. 2017 IFIP/IEEE Symposium on Integrated Network and Service Management (IM).<br>
-                [17] Xu, X., Weber, I., & Staples, M. (2019). Architecture for blockchain applications. Springer.<br>
-                [18] Wang, H., & He, D. (2018). A survey on security of blockchain systems. Future Generation Computer Systems.<br>
-                [19] Liang, X., Zhao, J., Shetty, S., & Li, D. (2017). Integrating blockchain for data sharing and collaboration in mobile healthcare applications. 2017 IEEE 28th Annual International Symposium on Personal, Indoor, and Mobile Radio Communications (PIMRC).<br>
-                [20] Esposito, C., De Santis, A., Tortora, G., Chang, H., & Choo, K. K. R. (2018). Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? IEEE Cloud Computing.
-            </p>
+            <div class="references">
+                <p><span>[1]</span> Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.</p>
+                <p><span>[2]</span> Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An overview of blockchain technology: Architecture, consensus, and future trends. 2017 IEEE International Congress on Big Data (BigData Congress).</p>
+                <p><span>[3]</span> Wood, G. (2014). Ethereum: A Secure Decentralized Generalized Transaction Ledger.</p>
+                <p><span>[4]</span> Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the Internet of Things. IEEE Access.</p>
+                <p><span>[5]</span> Azaria, A., Ekblaw, A., Vieira, T., & Lippman, A. (2016). MedRec: Using Blockchain for Medical Data Access and Permission Management. 2016 2nd International Conference on Open and Big Data (OBD).</p>
+                <p><span>[6]</span> Yue, X., Wang, H., Jin, D., Li, M., & Jiang, W. (2016). Healthcare data gateways: Found healthcare intelligence on blockchain with novel privacy risk control. Journal of Medical Systems.</p>
+                <p><span>[7]</span> Kumar, S., Smith, K., & Banerjee, A. (2020). Blockchain technology in healthcare: A systematic review. Healthcare Management Review.</p>
+                <p><span>[8]</span> Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2019). Blockchain challenges and opportunities: A survey. International Journal of Web and Grid Services.</p>
+                <p><span>[9]</span> Engelhardt, M. A. (2017). Hitching healthcare to the blockchain: A promising path to a value-based model. Healthcare Informatics Research.</p>
+                <p><span>[10]</span> Kshetri, N. (2017). Blockchain's roles in strengthening cybersecurity and protecting privacy. Telecommunications Policy.</p>
+                <p><span>[11]</span> Peterson, K., Deeduvanu, R., Kanjamala, P., & Boles, K. (2016). A blockchain-based approach to health information exchange networks. Proceedings of NIST Workshop on Blockchain and Healthcare.</p>
+                <p><span>[12]</span> Radanović, I., & Likić, R. (2018). Opportunities for use of blockchain technology in medicine. Applied Health Economics and Health Policy.</p>
+                <p><span>[13]</span> Cai, C. (2018). Disrupting financial intermediation: An assessment of the blockchain technology's impact. Information & Communications Technology Law.</p>
+                <p><span>[14]</span> Zhang, P., Schmidt, D. C., White, J., & Lenz, G. (2018). Blockchain technology use cases in healthcare. Advances in Computers.</p>
+                <p><span>[15]</span> Angraal, S., Krumholz, H. M., & Schulz, W. L. (2017). Blockchain technology: Applications in health care. Circulation: Cardiovascular Quality and Outcomes.</p>
+                <p><span>[16]</span> Bocek, T., Rodrigues, B. B., Strasser, T., & Stiller, B. (2017). Blockchains everywhere - A use-case of blockchains in the pharma supply-chain. 2017 IFIP/IEEE Symposium on Integrated Network and Service Management (IM).</p>
+                <p><span>[17]</span> Xu, X., Weber, I., & Staples, M. (2019). Architecture for blockchain applications. Springer.</p>
+                <p><span>[18]</span> Wang, H., & He, D. (2018). A survey on security of blockchain systems. Future Generation Computer Systems.</p>
+                <p><span>[19]</span> Liang, X., Zhao, J., Shetty, S., & Li, D. (2017). Integrating blockchain for data sharing and collaboration in mobile healthcare applications. 2017 IEEE 28th Annual International Symposium on Personal, Indoor, and Mobile Radio Communications (PIMRC).</p>
+                <p><span>[20]</span> Esposito, C., De Santis, A., Tortora, G., Chang, H., & Choo, K. K. R. (2018). Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? IEEE Cloud Computing.</p>
+            </div>
         </div>
     </div>
 
@@ -339,16 +447,45 @@
         &copy; 2024 InsuraBlock Network. All rights reserved.
     </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Citation</h2>
+            <p><strong>Author:</strong> <b><i>Zain Buksh</i></b>, <b><i>A B M Shawkat Ali</i></b></p>
+            <p><strong>Title:</strong> InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System</p>
+            <p><strong>Publisher:</strong> Github Project</p>
+            <p><strong>Published date:</strong> 13 August 2024</p>
+            <p><strong>Link:</strong> <a href="https://insurablock.github.io/2024.INSB99045" target="_blank">https://insurablock.github.io/2024.INSB99045</a></p>
+        </div>
+    </div>
+
     <script>
-        // Smooth scrolling for sidebar links
-        document.querySelectorAll('.sidebar a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("cite-project");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
