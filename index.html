@@ -3,352 +3,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InsuraBlock Network</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Blockchain Health Insurance Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.0"></script>
     <style>
+        :root {
+            --primary-color: #00d1b2;
+            --secondary-color: #00a38d;
+            --bg-color: #1c1c1e;
+            --fg-color: #e0e0e0;
+            --input-bg-color: #2c2c2e;
+            --input-border-color: #2c2c2e;
+            --close-btn-bg: #ff3b30;
+            --close-btn-hover-bg: #d32f2f;
+            --error-color: #ff3b30;
+            --gradient-colors: linear-gradient(-45deg, #1c1c1e, #2c2c2e, #1c1c1e, #2c2c2e);
+            --gradient-animation: gradientBG 15s ease infinite;
+            --btn-hover-shadow: 0px 0px 10px rgba(0, 209, 178, 0.7);
+            --input-focus-border: 1px solid var(--primary-color);
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: var(--gradient-colors);
+            background-size: 400% 400%;
+            animation: var(--gradient-animation);
+            color: var(--fg-color);
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
-        .header {
-            background-color: #0056b3;
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .header img {
-            height: 50px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-            flex: 1;
-            text-align: center;
-        }
-
-        .header .info {
-            font-size: 0.9em;
-            text-align: right;
-        }
-
-        .header .info a {
-            color: #fff;
-            text-decoration: underline;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
-            display: flex;
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 50px auto;
             padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(28, 28, 30, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        .sidebar {
-            width: 250px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-right: 1px solid #ddd;
-            position: sticky;
-            top: 20px;
-            height: 100vh;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: var(--bg-color);
+            color: var(--fg-color);
+            border-bottom: 1px solid #444;
         }
 
-        .sidebar a {
-            display: block;
-            color: #0056b3;
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--fg-color);
             text-decoration: none;
-            margin: 10px 0;
-            font-size: 1.1em;
+            margin: 0 15px;
+            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
-        .sidebar a:hover {
-            text-decoration: underline;
-            color: #003a8c;
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        h2 {
-            color: #0056b3;
-            margin-bottom: 10px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .paper-title {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .author-list {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .author-list span {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .author-affiliations {
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        .publication-details {
-            font-size: 0.9em;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .download-section {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1.2em;
-            color: #fff;
-            background: #007BFF;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: background 0.3s ease;
-        }
-
-        .download-btn:hover {
-            background: #0056b3;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            margin-top: 20px;
-            box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer a {
-            color: #007BFF;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .metrics {
+        .auth-buttons {
             display: flex;
+            align-items: center;
+        }
+
+        .auth-buttons a {
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .auth-buttons a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+            flex-basis: calc(33.333% - 20px);
+            background-color: rgba(44, 62, 80, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: transparent;
+            color: var(--fg-color);
+            text-align: center;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            transition: color 0.5s ease;
+        }
+
+        .accordion {
+            background-color: var(--bg-color);
+            color: var(--fg-color);
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .accordion:hover {
+            background-color: var(--input-bg-color);
+        }
+
+        .panel {
+            padding: 0 15px;
+            background-color: var (--input-bg-color);
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-radius: 5px;
+        }
+
+        .login-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            z-index: 1000;
         }
 
-        .metrics div {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        .login-form {
+            position: relative;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+            color: var(--fg-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        .metrics div i {
-            color: #007BFF;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .system-architecture img {
-            max-width: 100%;
-            height: auto;
+        .login-form input {
             display: block;
-            margin: 20px 0;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid var(--input-border-color);
+            border-radius: 5px;
+            background-color: var(--input-bg-color);
+            color: var(--fg-color);
+            transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+        }
+
+        .login-form input:focus {
+            border: var(--input-focus-border);
+            outline: none;
+        }
+
+        .login-form button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--btn-hover-shadow);
+        }
+
+        .login-form a {
+            color: var(--primary-color);
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .login-form a:hover {
+            text-decoration: underline;
+        }
+
+        .login-form .close-popup {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            background-color: var(--close-btn-bg);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .login-form .close-popup:hover {
+            background-color: var(--close-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: var(--btn-hover-shadow);
+        }
+
+        .loading-spinner {
+            display: none;
+            margin: 10px auto;
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 24px;
+            height: 24px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature {
+                flex-basis: 100%;
+                margin: 10px 0;
+            }
+
+            .menu-bar {
+                flex-direction: column;
+            }
+
+            .menu-bar a {
+                margin: 10px 0;
+            }
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: 50px auto;
         }
     </style>
 </head>
-<body>
-    <div class="header">
-        <img src="logo.png" alt="InsuraBlock Network Logo">
-        <h1>InsuraBlock Network</h1>
-        <div class="info">
-            <p>Open access | Published: 14 Aug 2024 | <a href="#">Cite this project</a></p>
+<body data-theme="dark">
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>InsuraBlock Network</span>
         </div>
-    </div>
+        <nav class="nav-links">
+            <a href="index.html" data-tooltip="Home">Home</a>
+            <a href="index.html" data-tooltip="About Us">About Us</a>
+            <a href="index.html" data-tooltip="Blockchain">Blockchain</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="#" onclick="showLogin()">Log in</a>
+            <a href="#">>>></a>
+        </div>
+    </header>
 
     <div class="container">
-        <div class="sidebar">
-            <a href="#abstract">Abstract</a>
-            <a href="#introduction">Introduction</a>
-            <a href="#methodology">Methodology</a>
-            <a href="#results">Results</a>
-            <a href="#software-implementation">Software Implementation</a>
-            <a href="#discussion">Discussion</a>
-            <a href="#conclusion">Conclusion</a>
-            <a href="#references">References</a>
+        <section class="features" id="features">
+            <div class="feature">
+                <i class="fas fa-lock"></i>
+                <h2>Secure</h2>
+                <p>Our blockchain technology ensures secure and tamper-proof records, reducing the risk of fraud and scams.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <h2>Transparent</h2>
+                <p>Blockchain enables transparent transactions, providing all parties involved with real-time access to data and reducing disputes.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-rocket"></i>
+                <h2>Efficient</h2>
+                <p>Streamlined processes and automated smart contracts make our solution efficient, saving time and resources.</p>
+            </div>
+        </section>
+        <p style="text-align: center;">Learn more about how our blockchain solution can revolutionize the health insurance industry.</p>
+        <div style="text-align: center;">
+            <a href="#" class="btn" onclick="openModal('learnMoreModal')"><i class="fas fa-info-circle"></i> Learn More</a>
         </div>
-        <div class="main-content">
-            <div class="download-section">
-                <a href="path_to_your_research_paper.pdf" class="download-btn" download>Open Project <i class="fas fa-download"></i></a>
-                <p>You have full access to this <a href="#" style="color: #007BFF; text-decoration: underline;">open access</a> project</p>
-            </div>
 
-            <div class="paper-title">
-                InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System
-            </div>
+        <button class="accordion">What is Blockchain?</button>
+        <div class="panel">
+            <p>Blockchain is a distributed ledger technology that ensures data integrity, security, and transparency by storing information across a network of computers.</p>
+        </div>
+        <button class="accordion">How does Blockchain work?</button>
+        <div class="panel">
+            <p>Blockchain works by recording transactions in blocks, which are then linked together in a chain. Each block contains a cryptographic hash of the previous block, ensuring the data's integrity.</p>
+        </div>
+        <button class="accordion">What is Hyperledger?</button>
+        <div class="panel">
+            <p>Hyperledger is an open-source collaborative effort created to advance cross-industry blockchain technologies. It is a global collaboration hosted by The Linux Foundation, including leaders in finance, banking, Internet of Things, supply chains, manufacturing, and technology.</p>
+        </div>
 
-            <div class="author-list">
-                <span>by Zain Buksh<sup>1</sup> and A B M Shawkat Ali</span>
-            </div>
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <canvas id="usageChart"></canvas>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Blockchain Health Insurance Solution. All rights reserved.</p>
+    </footer>
 
-            <div class="author-affiliations">
-                <p><sup>1</sup> The University of Fiji, Department of Computer Science and Mathematics, Fiji</p>
-                <p>Email: <a href="mailto:zainb@unifiji.ac.fj">zainb@unifiji.ac.fj</a></p>
-            </div>
-
-            <div class="publication-details">
-                Project received: 8 April 2024 / Published: 13 August 2024
-            </div>
-
-            <h2 id="abstract">Abstract</h2>
-            <p>The healthcare industry faces numerous challenges in managing health insurance claims, including inefficiencies, fraud, and data security issues. "InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System" addresses these challenges by leveraging blockchain technology to create a secure, transparent, and tamper-proof platform for recording health insurance claims. This system ensures data integrity, reduces administrative overhead, and enhances trust among stakeholders. By implementing smart contracts, InsuraBlock automates claim verification and settlement processes, thereby reducing processing time and operational costs. The proposed solution demonstrates significant potential in transforming the health insurance sector, promoting efficiency, and safeguarding sensitive patient data.</p>
-
-            <h2 id="introduction">Introduction</h2>
-            <p>The health insurance industry is confronted with significant challenges related to the management of claims, including inefficiencies, fraud, and data security concerns. Traditional systems often rely on centralized databases that are vulnerable to tampering and unauthorized access, leading to increased administrative costs and reduced trust among stakeholders. This whitepaper introduces InsuraBlock, a blockchain-based health insurance claim data recording system designed to address these challenges through the use of decentralized ledger technology and smart contracts.</p>
-
-            <h2 id="methodology">Methodology</h2>
-            <h3>Blockchain Technology</h3>
-            <p>Blockchain technology provides a decentralized, immutable ledger that records transactions in a secure and transparent manner. Each block in the blockchain contains a cryptographic hash of the previous block, a timestamp, and transaction data, ensuring data integrity and security. The distributed nature of the blockchain ensures that no single entity controls the entire ledger, reducing the risk of fraud and tampering [1][2].</p>
-
-            <h3>Smart Contracts</h3>
-            <p>Smart contracts are self-executing contracts with the terms of the agreement directly written into code. These contracts automatically execute predefined actions when certain conditions are met, eliminating the need for intermediaries and reducing the risk of human error [3][4]. In the context of InsuraBlock, smart contracts automate the verification and settlement of insurance claims.</p>
-
-            <h3 id="system-architecture">System Architecture</h3>
-            <p>InsuraBlock comprises three main components:</p>
-            <ul>
-                <li><strong>Blockchain Ledger:</strong> A decentralized ledger that records all health insurance claims.</li>
-                <li><strong>Smart Contracts:</strong> Automated scripts that manage the claim verification and settlement process.</li>
-                <li><strong>User Interface:</strong> A web-based interface for stakeholders to interact with the system.</li>
-            </ul>
-            <div class="system-architecture">
-                <img src="architecture.png" alt="System Architecture">
-            </div>
-
-            <h3>Data Flow</h3>
-            <p>Claim Submission: Patients or healthcare providers submit insurance claims via the user interface.<br>
-            Verification: Smart contracts automatically verify the claims against predefined criteria.<br>
-            Approval and Settlement: Verified claims are approved and recorded on the blockchain, triggering automatic payment settlements.</p>
-
-            <h2 id="results">Results</h2>
-            <h3>Data Integrity and Security</h3>
-            <p>The implementation of blockchain technology ensures that once a claim is recorded, it cannot be altered or deleted, providing a secure and trustworthy record. This significantly reduces the risk of fraud and unauthorized access to sensitive patient data [5][6].</p>
-
-            <h3>Efficiency and Cost Reduction</h3>
-            <p>By automating claim verification and settlement processes through smart contracts, InsuraBlock reduces administrative overhead and processing time, resulting in substantial cost savings for insurance companies [7][8].</p>
-
-            <h3>Transparency and Trust</h3>
-            <p>The decentralized nature of blockchain provides transparency in the claim process, allowing all stakeholders to access and verify claim records. This transparency fosters trust among patients, healthcare providers, and insurance companies [9][10].</p>
-
-            <h2 id="software-implementation">Software Implementation</h2>
-            <p>InsuraBlock's software component is designed to facilitate seamless interaction between users and the blockchain system. The system's user interface, developed using HTML, CSS, and JavaScript, provides an intuitive platform for recording, managing, and analyzing health insurance claims.</p>
-
-            <h3>User Interface Features</h3>
-            <p>Record Registration: Users can register new insurance claims by entering relevant information such as full name, BRN, policy number, treatment received, diagnosed disease, clinic diagnosed, and claim amount. Each record is then hashed using SHA-256 to ensure data integrity before being stored on the blockchain.<br>
-            Registration List: Displays all recorded claims, providing a comprehensive view of the registered data, including full name, BRN, policy number, treatment received, diagnosed disease, clinic diagnosed, claim amount, timestamp, and hash.<br>
-            Search Functionality: Allows users to search for specific claims using the BRN number, facilitating easy retrieval and verification of claim data.<br>
-            Analytics: Provides detailed analysis of claim data, including total claim amounts, disease frequency, and predictive analysis using machine learning algorithms such as linear regression, support vector machines, and decision trees.</p>
-
-            <h3>Analytical Tools</h3>
-            <p>The analytics section of InsuraBlock incorporates advanced visualization tools to present data in an easily interpretable format. These tools include:</p>
-            <ul>
-                <li>Bar Charts: Used for future claim amount predictions based on historical data.</li>
-                <li>Scatter Plots: Display claim amount frequency, providing insights into common claim amounts.</li>
-                <li>Heatmaps: Visualize the frequency of claims by month and diagnosed disease, highlighting trends and patterns in the data.</li>
-                <li>Pie Charts: Show the distribution of diagnosed diseases, offering a clear picture of common ailments among policyholders.</li>
-            </ul>
-
-            <h3>Blockchain Integration</h3>
-            <p>InsuraBlock integrates with blockchain technology to ensure that all registered records are securely stored and immutable. The system uses a local storage mechanism to temporarily store records before pushing them to the blockchain, ensuring that all data is tamper-proof and verifiable.</p>
-            <ul>
-                <li>Record Hashing: Each record is hashed using the SHA-256 algorithm to create a unique identifier that ensures data integrity.</li>
-                <li>Data Storage: Records are stored locally until they are pushed to the blockchain, where they become part of the immutable ledger.</li>
-                <li>Verification: The blockchain's decentralized nature allows for transparent verification of all records, enhancing trust among stakeholders.</li>
-            </ul>
-
-            <h2 id="discussion">Discussion</h2>
-            <p>The implementation of InsuraBlock in the health insurance industry presents several advantages and challenges. While the system enhances data integrity, efficiency, and transparency, it also requires significant investment in technology and training. Moreover, regulatory compliance and interoperability with existing systems are critical factors that need to be addressed for widespread adoption [11][12].</p>
-
-            <h3>Potential for Industry Transformation</h3>
-            <p>InsuraBlock has the potential to transform the health insurance sector by streamlining the claim process, reducing fraud, and enhancing data security. The use of blockchain technology and smart contracts can lead to more efficient and cost-effective operations, ultimately benefiting patients, healthcare providers, and insurance companies [13][14].</p>
-
-            <h3>Challenges and Future Research</h3>
-            <p>Despite its potential, the implementation of blockchain technology in health insurance is not without challenges. Issues such as scalability, interoperability, and regulatory compliance need to be addressed. Future research should focus on developing standardized protocols and frameworks to facilitate the integration of blockchain technology in the health insurance industry [15][16].</p>
-
-            <h2 id="conclusion">Conclusion</h2>
-            <p>InsuraBlock presents a transformative solution for the health insurance industry, addressing critical challenges related to inefficiencies, fraud, and data security. By leveraging blockchain technology and smart contracts, InsuraBlock enhances data integrity, reduces operational costs, and promotes transparency. This system has the potential to revolutionize the management of health insurance claims, ensuring a more efficient and secure healthcare ecosystem.</p>
-
-            <h2 id="references">References</h2>
-            <p>
-                [1] Nakamoto, S. (2008). Bitcoin: A Peer-to-Peer Electronic Cash System.<br>
-                [2] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2017). An overview of blockchain technology: Architecture, consensus, and future trends. 2017 IEEE International Congress on Big Data (BigData Congress).<br>
-                [3] Wood, G. (2014). Ethereum: A Secure Decentralized Generalized Transaction Ledger.<br>
-                [4] Christidis, K., & Devetsikiotis, M. (2016). Blockchains and Smart Contracts for the Internet of Things. IEEE Access.<br>
-                [5] Azaria, A., Ekblaw, A., Vieira, T., & Lippman, A. (2016). MedRec: Using Blockchain for Medical Data Access and Permission Management. 2016 2nd International Conference on Open and Big Data (OBD).<br>
-                [6] Yue, X., Wang, H., Jin, D., Li, M., & Jiang, W. (2016). Healthcare data gateways: Found healthcare intelligence on blockchain with novel privacy risk control. Journal of Medical Systems.<br>
-                [7] Kumar, S., Smith, K., & Banerjee, A. (2020). Blockchain technology in healthcare: A systematic review. Healthcare Management Review.<br>
-                [8] Zheng, Z., Xie, S., Dai, H., Chen, X., & Wang, H. (2019). Blockchain challenges and opportunities: A survey. International Journal of Web and Grid Services.<br>
-                [9] Engelhardt, M. A. (2017). Hitching healthcare to the blockchain: A promising path to a value-based model. Healthcare Informatics Research.<br>
-                [10] Kshetri, N. (2017). Blockchain's roles in strengthening cybersecurity and protecting privacy. Telecommunications Policy.<br>
-                [11] Peterson, K., Deeduvanu, R., Kanjamala, P., & Boles, K. (2016). A blockchain-based approach to health information exchange networks. Proceedings of NIST Workshop on Blockchain and Healthcare.<br>
-                [12] Radanović, I., & Likić, R. (2018). Opportunities for use of blockchain technology in medicine. Applied Health Economics and Health Policy.<br>
-                [13] Cai, C. (2018). Disrupting financial intermediation: An assessment of the blockchain technology's impact. Information & Communications Technology Law.<br>
-                [14] Zhang, P., Schmidt, D. C., White, J., & Lenz, G. (2018). Blockchain technology use cases in healthcare. Advances in Computers.<br>
-                [15] Angraal, S., Krumholz, H. M., & Schulz, W. L. (2017). Blockchain technology: Applications in health care. Circulation: Cardiovascular Quality and Outcomes.<br>
-                [16] Bocek, T., Rodrigues, B. B., Strasser, T., & Stiller, B. (2017). Blockchains everywhere - A use-case of blockchains in the pharma supply-chain. 2017 IFIP/IEEE Symposium on Integrated Network and Service Management (IM).<br>
-                [17] Xu, X., Weber, I., & Staples, M. (2019). Architecture for blockchain applications. Springer.<br>
-                [18] Wang, H., & He, D. (2018). A survey on security of blockchain systems. Future Generation Computer Systems.<br>
-                [19] Liang, X., Zhao, J., Shetty, S., & Li, D. (2017). Integrating blockchain for data sharing and collaboration in mobile healthcare applications. 2017 IEEE 28th Annual International Symposium on Personal, Indoor, and Mobile Radio Communications (PIMRC).<br>
-                [20] Esposito, C., De Santis, A., Tortora, G., Chang, H., & Choo, K. K. R. (2018). Blockchain: A Panacea for Healthcare Cloud-Based Data Security and Privacy? IEEE Cloud Computing.
-            </p>
+    <div class="login-popup" id="loginPopup">
+        <div class="login-form">
+            <h2>Welcome Back <span role="img" aria-label="wave">👋</span></h2>
+            <p>Let's explore the app again with us.</p>
+            <form onsubmit="return login()">
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <a href="#">Forgot Password?</a>
+                <button type="submit" class="btn">Login</button>
+                <button type="button" class="close-popup" onclick="closeLogin()">Close</button>
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <div class="error-message" id="errorMessage"></div>
+            </form>
+            <p>Don't have an account? <a href="#">Register here</a></p>
         </div>
     </div>
 
-    <div class="footer">
-        &copy; 2024 InsuraBlock Network. All rights reserved.
+    <!-- Modal -->
+    <div id="learnMoreModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('learnMoreModal')">&times;</span>
+            <h2>Learn More</h2>
+            <p>Blockchain technology can revolutionize the health insurance industry by providing secure, transparent, and efficient solutions. Learn more about how we utilize blockchain and Hyperledger to enhance the safety, transparency, and efficiency of health insurance processes.</p>
+        </div>
     </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            margin: auto;
+            padding: 20px;
+            border: 1px solid var(--primary-color);
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            color: var(--fg-color);
+        }
+
+        .close {
+            color: var(--fg-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 
     <script>
-        // Smooth scrolling for sidebar links
-        document.querySelectorAll('.sidebar a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        function showLogin() {
+            document.getElementById('loginPopup').style.display = 'flex';
+        }
+
+        function closeLogin() {
+            document.getElementById('loginPopup').style.display = 'none';
+        }
+
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var loadingSpinner = document.getElementById('loadingSpinner');
+            var errorMessage = document.getElementById('errorMessage');
+
+            loadingSpinner.style.display = 'block';
+            errorMessage.style.display = 'none';
+
+            if (!validateInput(username, password)) {
+                showError('Both fields are required.');
+                return false;
+            }
+
+            setTimeout(function() {
+                loadingSpinner.style.display = 'none';
+                if (username === 'admin' && password === 'admin') {
+                    alert('Login successful!');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    showError('Invalid username or password. Please try again.');
+                }
+            }, 2000);
+
+            return false;
+        }
+
+        function validateInput(username, password) {
+            return username.trim() !== '' && password.trim() !== '';
+        }
+
+        function showError(message) {
+            var errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function animateFeatures() {
+            const features = document.getElementById('features');
+            features.style.opacity = '1';
+            features.style.transform = 'translateY(0)';
+        }
+
+        function setupAccordions() {
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
                 });
+            }
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        window.onload = function() {
+            animateFeatures();
+            setupAccordions();
+            setupChart();
+        };
+
+        function setupChart() {
+            const ctx = document.getElementById('usageChart').getContext('2d');
+            const usageChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023'],
+                    datasets: [{
+                        label: 'Usage of Web3 Tech Websites',
+                        data: [120, 150, 180, 220, 300],
+                        borderColor: 'rgba(0, 209, 178, 1)',
+                        backgroundColor: 'rgba(0, 209, 178, 0.2)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(0, 209, 178, 1)',
+                        pointBorderColor: 'rgba(0, 209, 178, 1)',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 209, 178, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Usage (in thousands)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: getComputedStyle(document.documentElement).getPropertyValue('--fg-color')
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'xy'
+                            },
+                            zoom: {
+                                wheel: {
+                                    enabled: true
+                                },
+                                pinch: {
+                                    enabled: true
+                                },
+                                mode: 'xy'
+                            }
+                        }
+                    }
+                }
             });
-        });
+        }
     </script>
 </body>
 </html>
