@@ -262,13 +262,13 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .close:hover,
         .close:focus {
             color: black;
             text-decoration: none;
-            cursor: pointer;
         }
 
         @keyframes fadeInModal {
@@ -296,6 +296,55 @@
             display: inline-block;
             min-width: 30px;
         }
+
+        /* Styling for software screenshots */
+        .software-screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .software-screenshots img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -320,7 +369,7 @@
         </div>
         <div class="main-content">
             <div class="download-section">
-                <a href="path_to_your_research_paper.pdf" class="download-btn" download>Open Project <i class="fas fa-folder-open"></i></a>
+                <a href="https://insurablock.github.io/" class="download-btn" download>Open Project <i class="fas fa-folder-open"></i></a>
             </div>
 
             <div class="paper-title">
@@ -330,7 +379,6 @@
             <div class="author-list">
                 <span>Software Project by <b><i>Zain Buksh</i></b> and <b><i>A B M Shawkat Ali</i></b></span>
             </div>
-
 
             <div class="publication-details">
                 Online: 13 August 2024
@@ -383,6 +431,53 @@
             Registration List: Displays all recorded claims, providing a comprehensive view of the registered data, including full name, BRN, policy number, treatment received, diagnosed disease, clinic diagnosed, claim amount, timestamp, and hash.<br>
             Search Functionality: Allows users to search for specific claims using the BRN number, facilitating easy retrieval and verification of claim data.<br>
             Analytics: Provides detailed analysis of claim data, including total claim amounts, disease frequency, and predictive analysis using machine learning algorithms such as linear regression, support vector machines, and decision trees.</p>
+
+            <h3>Screenshots of the Software</h3>
+            <p>Below are the screenshots demonstrating various features of the InsuraBlock software:</p>
+            <div class="software-screenshots">
+                <img src="fig2.png" alt="Record Registration" onclick="openLightbox('img1')">
+                <img src="fig3.png" alt="Registration List" onclick="openLightbox('img2')">
+                <img src="fig4.png" alt="Search Functionality" onclick="openLightbox('img3')">
+                <img src="fig5.png" alt="Bar Chart Analytics" onclick="openLightbox('img4')">
+                <img src="fig6.png" alt="Scatter Plot Analytics" onclick="openLightbox('img5')">
+                <img src="fig7.png" alt="Heatmap Analytics" onclick="openLightbox('img6')">
+                <img src="fig8.png" alt="Pie Chart Analytics" onclick="openLightbox('img7')">
+                <img src="fig9.png" alt="Blockchain Integration" onclick="openLightbox('img8')">
+            </div>
+
+            <!-- Lightbox -->
+            <div id="img1" class="lightbox">
+                <span class="close" onclick="closeLightbox('img1')">&times;</span>
+                <img src="fig2.png" alt="Record Registration">
+            </div>
+            <div id="img2" class="lightbox">
+                <span class="close" onclick="closeLightbox('img2')">&times;</span>
+                <img src="fig3.png" alt="Registration List">
+            </div>
+            <div id="img3" class="lightbox">
+                <span class="close" onclick="closeLightbox('img3')">&times;</span>
+                <img src="fig4.png" alt="Search Functionality">
+            </div>
+            <div id="img4" class="lightbox">
+                <span class="close" onclick="closeLightbox('img4')">&times;</span>
+                <img src="fig5.png" alt="Bar Chart Analytics">
+            </div>
+            <div id="img5" class="lightbox">
+                <span class="close" onclick="closeLightbox('img5')">&times;</span>
+                <img src="fig6.png" alt="Scatter Plot Analytics">
+            </div>
+            <div id="img6" class="lightbox">
+                <span class="close" onclick="closeLightbox('img6')">&times;</span>
+                <img src="fig7.png" alt="Heatmap Analytics">
+            </div>
+            <div id="img7" class="lightbox">
+                <span class="close" onclick="closeLightbox('img7')">&times;</span>
+                <img src="fig8.png" alt="Pie Chart Analytics">
+            </div>
+            <div id="img8" class="lightbox">
+                <span class="close" onclick="closeLightbox('img8')">&times;</span>
+                <img src="fig9.png" alt="Blockchain Integration">
+            </div>
 
             <h3>Analytical Tools</h3>
             <p>The analytics section of InsuraBlock incorporates advanced visualization tools to present data in an easily interpretable format. These tools include:</p>
@@ -446,8 +541,8 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Citation</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Project Information</h2>
             <p><strong>Developers:</strong> <b><i>Zain Buksh</i></b>, <b><i>A B M Shawkat Ali</i></b></p>
             <p><strong>Title:</strong> InsuraBlock: A Blockchain-Based Health Insurance Claim Data Recording System</p>
             <p><strong>Category:</strong> GitHub Project</p>
@@ -472,7 +567,7 @@
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        function closeModal() {
             modal.style.display = "none";
         }
 
@@ -481,6 +576,16 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+
+        // Open lightbox
+        function openLightbox(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        // Close lightbox
+        function closeLightbox(id) {
+            document.getElementById(id).classList.remove('show');
         }
     </script>
 </body>
